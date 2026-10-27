@@ -1,0 +1,41 @@
+name: kidscribe
+description: KidScribe - handwriting learning app for kids aged 5-8.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  flutter_bloc: ^8.1.6   # BLoC state management (UI <- bloc <- repository)
+  equatable: ^2.0.5      # lets two states be compared, so the UI rebuilds only when needed
+  google_fonts: ^6.2.1
+  shared_preferences: ^2.2.3
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  confetti: ^0.8.0      # celebration burst on a 3-star trace
+  audioplayers: ^6.1.0  # plays the success chime
+  google_mlkit_digital_ink_recognition: ^0.14.1  # ML handwriting check (free-hand side)
+  path_provider: ^2.1.4  # save exported progress reports as files
+  flutter_local_notifications: ^17.2.3  # daily practice + task reminders
+  timezone: ^0.9.4                      # needed to schedule at a local time
+  image_picker: ^1.1.2                  # toy camera (FR-16)
+  image: ^4.2.0                         # checks if a toy photo is blurry
+  google_mlkit_image_labeling: ^0.14.1  # suggests the toy's name, on the device
+  cloud_firestore: ^5.6.0               # sync progress across devices (FR-20)
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  # Used by the unit tests to stand in for the phone's own folders.
+  path_provider_platform_interface: ^2.1.2
+  plugin_platform_interface: ^2.1.8
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/sounds/
