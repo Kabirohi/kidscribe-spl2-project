@@ -476,3 +476,43 @@ class BouncyPageTransitionsBuilder extends PageTransitionsBuilder {
     );
   }
 }
+
+/// Draws a small tilted pencil whose point sits exactly on [tip].
+/// Used by the "how to write" demos to show where the stroke is going.
+void drawPencilCursor(Canvas canvas, Offset tip, double s) {
+  final len = s * 0.11;
+  final w = s * 0.026;
+  canvas.save();
+  canvas.translate(tip.dx, tip.dy);
+  canvas.rotate(-math.pi / 4); // lean like a hand holding it
+  final fill = Paint();
+  // Wooden point + graphite.
+  canvas.drawPath(
+      Path()
+        ..moveTo(0, 0)
+        ..lineTo(w / 2, -w * 1.1)
+        ..lineTo(-w / 2, -w * 1.1)
+        ..close(),
+      fill..color = const Color(0xFFF4CD9C));
+  canvas.drawPath(
+      Path()
+        ..moveTo(0, 0)
+        ..lineTo(w * 0.2, -w * 0.4)
+        ..lineTo(-w * 0.2, -w * 0.4)
+        ..close(),
+      fill..color = const Color(0xFF2A1F5C));
+  // Yellow body, metal band and pink eraser.
+  canvas.drawRect(
+      Rect.fromLTWH(-w / 2, -len, w, len - w * 1.1), fill..color = AppColors.sun);
+  canvas.drawRect(Rect.fromLTWH(0, -len, w / 2, len - w * 1.1),
+      fill..color = const Color(0xFFF2A91B));
+  canvas.drawRect(Rect.fromLTWH(-w / 2, -len - w * 0.4, w, w * 0.4),
+      fill..color = const Color(0xFFC5CBDC));
+  canvas.drawRRect(
+      RRect.fromRectAndCorners(
+          Rect.fromLTWH(-w / 2, -len - w * 1.1, w, w * 0.7),
+          topLeft: Radius.circular(w * 0.4),
+          topRight: Radius.circular(w * 0.4)),
+      fill..color = AppColors.pink);
+  canvas.restore();
+}

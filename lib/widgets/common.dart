@@ -63,7 +63,7 @@ void showReportDialog(BuildContext context, String path, String content) {
   showDialog(
     context: context,
     builder: (ctx) => _dialogShell(
-      title: 'Report saved 📄',
+      title: 'Report saved',
       content: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,42 +203,94 @@ class KidInput {
   }
 }
 
-/// The page background used across the app.
+/// The page frame used across the app: a coloured header band with a
+/// soft wave, over a light lavender body.
 class KidPage extends StatelessWidget {
   final Widget child;
   final Widget? floatingActionButton;
 
-  const KidPage({super.key, required this.child, this.floatingActionButton});
+  /// Colour of the header band. Each area of the app has its own.
+  final Color color;
+
+  const KidPage({
+    super.key,
+    required this.child,
+    this.floatingActionButton,
+    this.color = AppColors.primary,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final top = MediaQuery.paddingOf(context).top;
     return Scaffold(
+      backgroundColor: AppColors.bgStart,
       floatingActionButton: floatingActionButton,
-      body: Container(
-        decoration: const BoxDecoration(gradient: AppColors.bgGradient),
-        child: Stack(
-          children: [
-            // Stars, bubbles and letters drifting softly in the background.
-            const Positioned.fill(
-                child: FloatingShapes(count: 12, opacity: 0.16)),
-            SafeArea(
-              // On a big tablet the content stays a comfortable reading width.
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1100),
-                  child: child,
+      body: Stack(
+        children: [
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            height: top + 88,
+            child: Container(
+              decoration: BoxDecoration(
+                color: color,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color.lerp(color, Colors.white, 0.08)!, color],
                 ),
               ),
+              child: Stack(
+                children: [
+                  // A few big soft circles give the band depth.
+                  Positioned(
+                    right: -40,
+                    top: -50,
+                    child: _blob(170, 0.10),
+                  ),
+                  Positioned(
+                    left: -30,
+                    bottom: -60,
+                    child: _blob(130, 0.08),
+                  ),
+                  const Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: -1,
+                    child: RollingWave(
+                        color: AppColors.bgStart, height: 26, amplitude: 6),
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+          SafeArea(
+            // On a big tablet the content stays a comfortable reading width.
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 1100),
+                child: child,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
+
+  static Widget _blob(double size, double alpha) => Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white.withValues(alpha: alpha),
+        ),
+      );
 }
 
-/// A round "back" button, like a game's close button.
+/// A round white "back" button, like a game's close button.
 class KidBackButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool onDark;
@@ -251,26 +303,23 @@ class KidBackButton extends StatelessWidget {
       onTap: onPressed ?? () => Navigator.maybePop(context),
       pressedScale: 0.85,
       child: Container(
-        width: 46,
-        height: 46,
-        decoration: BoxDecoration(
-          color: onDark ? Colors.white.withValues(alpha: 0.16) : Colors.white,
+        width: 48,
+        height: 48,
+        decoration: const BoxDecoration(
+          color: Colors.white,
           shape: BoxShape.circle,
-          border: onDark ? null : Border.all(color: AppColors.line, width: 2),
-          boxShadow: onDark
-              ? null
-              : const [
-                  BoxShadow(color: AppColors.line, offset: Offset(0, 3)),
-                ],
+          boxShadow: [
+            BoxShadow(color: Color(0x332A1F5C), offset: Offset(0, 4)),
+          ],
         ),
-        child: Icon(Icons.chevron_left_rounded,
-            size: 32, color: onDark ? Colors.white : AppColors.primary),
+        child: const Icon(Icons.arrow_back_rounded,
+            size: 26, color: AppColors.primary),
       ),
     );
   }
 }
 
-/// A back button and a big heavy title, with optional buttons on the right.
+/// A back button and a big title on the coloured band.
 class KidHeader extends StatelessWidget {
   final String title;
   final List<Widget> actions;
@@ -282,7 +331,7 @@ class KidHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 14, 12, 10),
+      padding: const EdgeInsets.fromLTRB(18, 12, 12, 14),
       child: Row(
         children: [
           const KidBackButton(),
@@ -292,15 +341,57 @@ class KidHeader extends StatelessWidget {
               title,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: GoogleFonts.nunito(
+              style: GoogleFonts.fredoka(
                 fontSize: fontSize,
-                fontWeight: FontWeight.w900,
+                fontWeight: FontWeight.w600,
                 height: 1.1,
-                color: AppColors.textDark,
+                color: Colors.white,
+                shadows: const [
+                  Shadow(color: Color(0x33000000), offset: Offset(0, 2)),
+                ],
               ),
             ),
           ),
           ...actions,
+        ],
+      ),
+    );
+  }
+}
+
+/// A small white pill for the right side of a header: a score or a count.
+class KidHeaderPill extends StatelessWidget {
+  final String text;
+  final IconData? icon;
+  final Color iconColor;
+
+  const KidHeaderPill(this.text,
+      {super.key, this.icon, this.iconColor = const Color(0xFFFFB800)});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 6),
+      padding: EdgeInsets.fromLTRB(icon == null ? 12 : 8, 6, 12, 6),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(color: Color(0x332A1F5C), offset: Offset(0, 3)),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (icon != null) ...[
+            Icon(icon, size: 20, color: iconColor),
+            const SizedBox(width: 4),
+          ],
+          Text(text,
+              style: GoogleFonts.nunito(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w900,
+                  color: AppColors.textDark)),
         ],
       ),
     );
@@ -330,10 +421,14 @@ class KidCard extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(26),
-        border: Border.all(color: edge, width: 2),
+        borderRadius: BorderRadius.circular(28),
+        border: borderColor == null
+            ? null
+            : Border.all(color: borderColor!, width: 3),
         boxShadow: [
-          BoxShadow(color: edge, offset: const Offset(0, 4)),
+          BoxShadow(color: edge, offset: const Offset(0, 5)),
+          const BoxShadow(
+              color: Color(0x142A1F5C), blurRadius: 18, offset: Offset(0, 8)),
         ],
       ),
       child: child,

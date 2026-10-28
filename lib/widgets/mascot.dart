@@ -123,158 +123,284 @@ class _PennyPainter extends CustomPainter {
     this.excited = false,
   });
 
-  static const _ink = Color(0xFF1F1A4D);
+  static const _ink = Color(0xFF2A1F5C);
+
+  // Soft "clay" shading: every part is lit from the top-left, like the
+  // 3D illustrations used in the rest of the app.
+  Paint _grad(Rect r, List<Color> colors,
+          {List<double>? stops,
+          Alignment begin = Alignment.centerLeft,
+          Alignment end = Alignment.centerRight}) =>
+      Paint()
+        ..shader =
+            LinearGradient(begin: begin, end: end, colors: colors, stops: stops)
+                .createShader(r);
+
+  Paint _radial(Offset c, double r, List<Color> colors,
+          {Alignment center = Alignment.center}) =>
+      Paint()
+        ..shader = RadialGradient(colors: colors, center: center)
+            .createShader(Rect.fromCircle(center: c, radius: r));
 
   @override
   void paint(Canvas canvas, Size size) {
     final s = size.width;
-    final fill = Paint()..style = PaintingStyle.fill;
+    Rect r(double l, double t, double w, double h) =>
+        Rect.fromLTWH(l * s, t * s, w * s, h * s);
+    Offset o(double x, double y) => Offset(x * s, y * s);
 
     // Bounce: hop up a little and squash at the bottom.
     final hop = (bounce > 0 ? bounce : 0) * 0.05 + jumpY.abs();
     final squash = bounce < 0 ? -bounce * 0.06 : 0.0;
 
-    // Ground shadow shrinks as she lifts.
-    final shadowW = 0.48 * (1 - hop * 1.6);
+    // Soft blurred ground shadow that shrinks as she lifts.
+    final shadowW = 0.46 * (1 - hop * 1.6);
     canvas.drawOval(
         Rect.fromCenter(
-            center: Offset(0.5 * s, 0.96 * s),
-            width: shadowW * s,
-            height: 0.05 * s),
-        fill..color = const Color(0x33000000));
+            center: o(0.5, 0.955), width: shadowW * s, height: 0.055 * s),
+        Paint()
+          ..color = const Color(0x402A1F5C)
+          ..maskFilter = MaskFilter.blur(BlurStyle.normal, 0.012 * s));
 
     canvas.save();
     canvas.translate(0, -hop * s);
-    // Squash around her feet.
     canvas.translate(s / 2, 0.95 * s);
     canvas.scale(1 + squash, 1 - squash);
-    canvas.rotate((-8 * math.pi / 180) + spin);
+    canvas.rotate((-7 * math.pi / 180) + spin);
     canvas.translate(-s / 2, -0.95 * s);
 
-    Rect r(double l, double t, double w, double h) =>
-        Rect.fromLTWH(l * s, t * s, w * s, h * s);
+    // ---- Arms (behind the body) ----
+    void arm(Offset from, Offset to) {
+      final dir = to - from;
+      final len = dir.distance;
+      canvas.save();
+      canvas.translate(from.dx, from.dy);
+      canvas.rotate(math.atan2(dir.dy, dir.dx));
+      final rr = RRect.fromRectAndRadius(
+          Rect.fromLTWH(0, -0.03 * s, len, 0.06 * s),
+          Radius.circular(0.03 * s));
+      canvas.drawRRect(
+          rr,
+          _grad(rr.outerRect, const [Color(0xFFFFD45A), Color(0xFFE8901A)],
+              begin: Alignment.topCenter, end: Alignment.bottomCenter));
+      canvas.restore();
+      // Round mitten hand with a highlight.
+      canvas.drawCircle(
+          to,
+          0.05 * s,
+          _radial(to, 0.05 * s, const [Color(0xFFFFE58A), Color(0xFFF2A91B)],
+              center: const Alignment(-0.4, -0.5)));
+      canvas.drawCircle(to + Offset(-0.015 * s, -0.018 * s), 0.012 * s,
+          Paint()..color = Colors.white.withValues(alpha: 0.7));
+    }
 
-    // Arms (behind the body).
-    final arm = Paint()
-      ..color = const Color(0xFFF2A91B)
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 0.055 * s;
-    final hand = Paint()..color = const Color(0xFFFFC83D);
-    // Left arm rests.
-    final lShoulder = Offset(0.29 * s, 0.50 * s);
-    final lHand = Offset(0.16 * s, 0.62 * s);
-    canvas.drawLine(lShoulder, lHand, arm);
-    canvas.drawCircle(lHand, 0.04 * s, hand);
-    // Right arm waves up.
-    final rShoulder = Offset(0.71 * s, 0.48 * s);
+    arm(o(0.31, 0.50), o(0.15, 0.62));
     final up = wave.abs() > 0.01 || excited;
     final ang =
         up ? (-math.pi / 3) + wave * 0.45 + (excited ? -0.3 : 0) : math.pi / 4;
-    final rHand = rShoulder + Offset(math.cos(ang), math.sin(ang)) * (0.18 * s);
-    canvas.drawLine(rShoulder, rHand, arm);
-    canvas.drawCircle(rHand, 0.04 * s, hand);
+    final rShoulder = o(0.69, 0.48);
+    arm(rShoulder,
+        rShoulder + Offset(math.cos(ang), math.sin(ang)) * (0.19 * s));
 
-    // Wooden tip + graphite.
+    // ---- Wooden tip + graphite ----
+    final tipRect = r(0.28, 0.66, 0.44, 0.30);
     final tip = Path()
-      ..moveTo(0.27 * s, 0.70 * s)
-      ..lineTo(0.73 * s, 0.70 * s)
-      ..lineTo(0.5 * s, 0.95 * s)
+      ..moveTo(0.285 * s, 0.68 * s)
+      ..lineTo(0.715 * s, 0.68 * s)
+      ..quadraticBezierTo(0.62 * s, 0.84 * s, 0.53 * s, 0.935 * s)
+      ..quadraticBezierTo(0.5 * s, 0.955 * s, 0.47 * s, 0.935 * s)
+      ..quadraticBezierTo(0.38 * s, 0.84 * s, 0.285 * s, 0.68 * s)
       ..close();
-    canvas.drawPath(tip, fill..color = const Color(0xFFF6D3A8));
+    canvas.drawPath(
+        tip,
+        _grad(tipRect, const [
+          Color(0xFFFFEBD0),
+          Color(0xFFF4CD9C),
+          Color(0xFFD9A46B),
+        ], stops: const [
+          0,
+          0.45,
+          1
+        ]));
     final lead = Path()
-      ..moveTo(0.42 * s, 0.86 * s)
-      ..lineTo(0.58 * s, 0.86 * s)
-      ..lineTo(0.5 * s, 0.95 * s)
+      ..moveTo(0.435 * s, 0.875 * s)
+      ..lineTo(0.565 * s, 0.875 * s)
+      ..quadraticBezierTo(0.53 * s, 0.935 * s, 0.5 * s, 0.95 * s)
+      ..quadraticBezierTo(0.47 * s, 0.935 * s, 0.435 * s, 0.875 * s)
       ..close();
-    canvas.drawPath(lead, fill..color = _ink);
+    canvas.drawPath(
+        lead, _grad(tipRect, const [Color(0xFF5A4E8C), Color(0xFF1E1645)]));
 
-    // Body.
-    final body = RRect.fromRectAndRadius(
-        r(0.27, 0.17, 0.46, 0.56), Radius.circular(0.06 * s));
-    canvas.drawRRect(body, fill..color = const Color(0xFFFFC83D));
+    // ---- Body: a glossy rounded cylinder ----
+    final bodyRect = r(0.27, 0.15, 0.46, 0.57);
+    final body = RRect.fromRectAndRadius(bodyRect, Radius.circular(0.11 * s));
+    canvas.drawRRect(
+        body,
+        _grad(bodyRect, const [
+          Color(0xFFFFE680),
+          Color(0xFFFFCB3D),
+          Color(0xFFF9AE22),
+          Color(0xFFE38A12),
+        ], stops: const [
+          0,
+          0.38,
+          0.78,
+          1
+        ]));
     canvas.save();
     canvas.clipRRect(body);
-    canvas.drawRect(
-        r(0.62, 0.17, 0.11, 0.56), fill..color = const Color(0xFFF2A91B));
-    // A shiny stripe on the left.
-    canvas.drawRect(
-        r(0.30, 0.17, 0.035, 0.56), fill..color = const Color(0x55FFFFFF));
-    canvas.restore();
-
-    // Metal band.
-    canvas.drawRect(
-        r(0.27, 0.12, 0.46, 0.07), fill..color = const Color(0xFFD9DDEA));
-    canvas.drawRect(
-        r(0.27, 0.145, 0.46, 0.012), fill..color = const Color(0xFFB7BDD2));
-
-    // Eraser.
+    // Wavy bottom edge where the wood is sharpened.
+    final scallop = Path()..moveTo(0.27 * s, 0.72 * s);
+    for (int i = 0; i < 4; i++) {
+      final x0 = 0.27 + i * 0.115;
+      scallop.quadraticBezierTo(
+          (x0 + 0.0575) * s, 0.665 * s, (x0 + 0.115) * s, 0.72 * s);
+    }
+    scallop
+      ..lineTo(0.73 * s, 0.75 * s)
+      ..lineTo(0.27 * s, 0.75 * s)
+      ..close();
+    canvas.drawPath(
+        scallop,
+        _grad(bodyRect,
+            const [Color(0xFFFFEBD0), Color(0xFFF4CD9C), Color(0xFFD9A46B)]));
+    // Long soft shine on the left.
     canvas.drawRRect(
         RRect.fromRectAndRadius(
-            r(0.27, 0.02, 0.46, 0.11), Radius.circular(0.05 * s)),
-        fill..color = const Color(0xFFFF5FA2));
+            r(0.315, 0.2, 0.045, 0.42), Radius.circular(0.03 * s)),
+        Paint()..color = Colors.white.withValues(alpha: 0.45));
+    canvas.restore();
 
-    // Eyes (they blink and look around).
-    final eyeH = 0.065 * s * (1 - blink * 0.9);
-    final white = Paint()..color = Colors.white;
-    for (final x in const [0.40, 0.60]) {
-      canvas.drawOval(
+    // ---- Metal band ----
+    final band = r(0.265, 0.105, 0.47, 0.075);
+    canvas.drawRRect(
+        RRect.fromRectAndRadius(band, Radius.circular(0.02 * s)),
+        _grad(band, const [
+          Color(0xFFF4F6FB),
+          Color(0xFFC5CBDC),
+          Color(0xFFF7F8FC),
+          Color(0xFFA7AEC4),
+        ], stops: const [
+          0,
+          0.35,
+          0.6,
+          1
+        ]));
+    final ridge = Paint()
+      ..color = const Color(0x339097B0)
+      ..strokeWidth = 0.008 * s;
+    canvas.drawLine(o(0.27, 0.13), o(0.73, 0.13), ridge);
+    canvas.drawLine(o(0.27, 0.155), o(0.73, 0.155), ridge);
+
+    // ---- Eraser ----
+    final er = r(0.275, 0.015, 0.45, 0.1);
+    canvas.drawRRect(
+        RRect.fromRectAndCorners(er,
+            topLeft: Radius.circular(0.08 * s),
+            topRight: Radius.circular(0.08 * s),
+            bottomLeft: Radius.circular(0.01 * s),
+            bottomRight: Radius.circular(0.01 * s)),
+        _grad(er, const [
+          Color(0xFFFFA3CB),
+          Color(0xFFFF6BAA),
+          Color(0xFFE2478B),
+        ], stops: const [
+          0,
+          0.45,
+          1
+        ]));
+    canvas.drawOval(r(0.32, 0.03, 0.12, 0.03),
+        Paint()..color = Colors.white.withValues(alpha: 0.5));
+
+    // ---- Face ----
+    // Eyebrows (raised when excited).
+    final browY = excited ? 0.255 : 0.275;
+    final brow = Paint()
+      ..color = _ink
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 0.018 * s;
+    for (final x in const [0.405, 0.595]) {
+      canvas.drawArc(
           Rect.fromCenter(
-              center: Offset(x * s, 0.40 * s),
-              width: 0.13 * s,
-              height: eyeH * 2),
-          white);
+              center: o(x, browY + 0.02), width: 0.09 * s, height: 0.04 * s),
+          math.pi * 1.15,
+          math.pi * 0.7,
+          false,
+          brow);
+    }
+
+    // Eyes: big glossy ovals that blink and look around.
+    final eyeH = 0.165 * (1 - blink * 0.92);
+    for (final x in const [0.405, 0.595]) {
+      final eye = Rect.fromCenter(
+          center: o(x, 0.385), width: 0.135 * s, height: eyeH * s);
+      canvas.drawOval(
+          eye,
+          _grad(eye, const [Colors.white, Color(0xFFE6E2F5)],
+              begin: Alignment.topCenter, end: Alignment.bottomCenter));
     }
     if (blink < 0.6) {
-      final dx = look * 0.02 * s;
-      final pupil = Paint()..color = _ink;
-      final glint = Paint()..color = Colors.white;
-      final pr = (excited ? 0.038 : 0.032) * s;
-      for (final x in const [0.41, 0.61]) {
-        canvas.drawCircle(Offset(x * s + dx, 0.41 * s), pr, pupil);
+      final dx = look * 0.022 * s;
+      final pr = (excited ? 0.05 : 0.044) * s;
+      for (final x in const [0.41, 0.60]) {
+        final c = Offset(x * s + dx, 0.398 * s);
         canvas.drawCircle(
-            Offset(x * s + dx + 0.01 * s, 0.395 * s), 0.011 * s, glint);
+            c,
+            pr,
+            _radial(c, pr, const [Color(0xFF4A3D8F), Color(0xFF1B1340)],
+                center: const Alignment(0.2, 0.4)));
+        canvas.drawCircle(c + Offset(0.016 * s, -0.018 * s), 0.016 * s,
+            Paint()..color = Colors.white);
+        canvas.drawCircle(c + Offset(-0.014 * s, 0.016 * s), 0.007 * s,
+            Paint()..color = Colors.white.withValues(alpha: 0.85));
       }
     } else {
       final lid = Paint()
         ..color = _ink
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round
-        ..strokeWidth = 0.016 * s;
-      for (final x in const [0.40, 0.60]) {
-        canvas.drawLine(Offset((x - 0.045) * s, 0.40 * s),
-            Offset((x + 0.045) * s, 0.40 * s), lid);
+        ..strokeWidth = 0.018 * s;
+      for (final x in const [0.405, 0.595]) {
+        canvas.drawArc(
+            Rect.fromCenter(
+                center: o(x, 0.38), width: 0.1 * s, height: 0.05 * s),
+            0.15,
+            math.pi - 0.3,
+            false,
+            lid);
       }
     }
 
-    // Cheeks.
-    final blush = Paint()..color = const Color(0x66FF5FA2);
-    canvas.drawCircle(Offset(0.34 * s, 0.53 * s), 0.035 * s, blush);
-    canvas.drawCircle(Offset(0.66 * s, 0.53 * s), 0.035 * s, blush);
+    // Rosy cheeks.
+    for (final x in const [0.33, 0.67]) {
+      final c = o(x, 0.52);
+      canvas.drawCircle(c, 0.05 * s,
+          _radial(c, 0.05 * s, const [Color(0x99FF6FA8), Color(0x00FF6FA8)]));
+    }
 
     // Mouth.
-    if (excited) {
-      // Big open smile.
+    if (happy || excited) {
+      final w = excited ? 0.17 : 0.13;
+      final d = excited ? 0.12 : 0.08;
       final m = Path()
-        ..moveTo(0.42 * s, 0.52 * s)
-        ..quadraticBezierTo(0.5 * s, 0.66 * s, 0.58 * s, 0.52 * s)
+        ..moveTo((0.5 - w / 2) * s, 0.51 * s)
+        ..quadraticBezierTo(
+            0.5 * s, 0.51 * s + 0.012 * s, (0.5 + w / 2) * s, 0.51 * s)
+        ..quadraticBezierTo(
+            0.5 * s, (0.51 + d * 1.6) * s, (0.5 - w / 2) * s, 0.51 * s)
         ..close();
-      canvas.drawPath(m, Paint()..color = _ink);
-      canvas.drawCircle(Offset(0.5 * s, 0.585 * s), 0.025 * s,
-          Paint()..color = const Color(0xFFFF5FA2));
+      canvas.drawPath(m, Paint()..color = const Color(0xFF3B1E4E));
+      canvas.save();
+      canvas.clipPath(m);
+      canvas.drawCircle(o(0.5, 0.51 + d * 1.25), d * 0.55 * s,
+          Paint()..color = const Color(0xFFFF6F91));
+      canvas.restore();
     } else {
-      final mouth = Paint()
-        ..color = _ink
-        ..style = PaintingStyle.stroke
-        ..strokeCap = StrokeCap.round
-        ..strokeWidth = 0.02 * s;
-      if (happy) {
-        canvas.drawArc(
-            r(0.43, 0.49, 0.14, 0.10), 0.1, math.pi - 0.2, false, mouth);
-      } else {
-        canvas.drawLine(
-            Offset(0.45 * s, 0.56 * s), Offset(0.55 * s, 0.56 * s), mouth);
-      }
+      canvas.drawOval(
+          Rect.fromCenter(
+              center: o(0.5, 0.54), width: 0.05 * s, height: 0.035 * s),
+          Paint()..color = const Color(0xFF3B1E4E));
     }
 
     canvas.restore();
