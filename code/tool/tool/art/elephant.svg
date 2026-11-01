@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360">
+  <ellipse cx="180" cy="344" rx="130" ry="14" fill="#000" fill-opacity="0.13"/>
+  <g id="body" data-pivot="180,342">
+    <!-- tail -->
+    <g id="tail" data-pivot="272,238">
+      <path d="M268 238 C290 244 300 258 302 276" fill="none" stroke="#7486D6" stroke-width="8" stroke-linecap="round"/>
+      <path d="M296 272 C300 264 312 266 312 276 C312 288 302 294 296 290 C292 286 292 278 296 272 Z" fill="#4E5BA8"/>
+    </g>
+    <!-- back legs -->
+    <rect x="104" y="256" width="44" height="80" rx="20" fill="#7486D6"/>
+    <rect x="212" y="256" width="44" height="80" rx="20" fill="#7486D6"/>
+    <!-- belly -->
+    <path d="M86 232 C86 186 128 166 180 166 C232 166 274 186 274 232 C274 276 232 300 180 300 C128 300 86 276 86 232 Z" fill="#8EA2E8"/>
+    <path d="M252 196 C270 210 276 230 272 250 C264 278 236 296 206 299 C240 282 262 246 252 196 Z" fill="#7486D6"/>
+    <!-- front legs -->
+    <rect x="130" y="262" width="46" height="78" rx="20" fill="#8EA2E8"/>
+    <rect x="184" y="262" width="46" height="78" rx="20" fill="#8EA2E8"/>
+    <rect x="212" y="262" width="18" height="70" rx="9" fill="#7486D6"/>
+    <ellipse cx="146" cy="332" rx="7" ry="5" fill="#E9EDFF"/>
+    <ellipse cx="160" cy="333" rx="7" ry="5" fill="#E9EDFF"/>
+    <ellipse cx="200" cy="333" rx="7" ry="5" fill="#E9EDFF"/>
+    <ellipse cx="214" cy="332" rx="7" ry="5" fill="#E9EDFF"/>
+    <!-- head -->
+    <g id="head" data-pivot="180,190">
+      <!-- big ears -->
+      <g id="earL" data-pivot="120,110">
+        <path d="M124 76 C86 52 30 66 26 116 C22 162 66 186 108 172 C122 150 128 110 124 76 Z" fill="#8EA2E8"/>
+        <path d="M112 90 C84 76 46 88 44 120 C42 150 72 166 100 158 C110 140 116 112 112 90 Z" fill="#F7A9C6"/>
+      </g>
+      <g id="earR" data-pivot="240,110">
+        <path d="M236 76 C274 52 330 66 334 116 C338 162 294 186 252 172 C238 150 232 110 236 76 Z" fill="#7486D6"/>
+        <path d="M248 90 C276 76 314 88 316 120 C318 150 288 166 260 158 C250 140 244 112 248 90 Z" fill="#F7A9C6"/>
+      </g>
+      <!-- head shape -->
+      <path d="M110 112 C110 70 142 46 180 46 C218 46 250 70 250 112 C250 150 222 178 180 178 C138 178 110 150 110 112 Z" fill="#8EA2E8"/>
+      <path d="M230 66 C248 82 254 104 248 126 C240 156 214 174 188 178 C220 160 240 120 230 66 Z" fill="#7486D6"/>
+      <!-- tuft of hair -->
+      <path d="M168 50 C164 36 172 28 178 34 C180 22 192 22 192 34 C198 30 204 38 196 48 Z" fill="#4E5BA8"/>
+      <!-- tusks -->
+      <path d="M150 162 C142 172 134 176 124 174 C132 186 150 184 160 170 Z" fill="#FFFFFF"/>
+      <path d="M210 162 C218 172 226 176 236 174 C228 186 210 184 200 170 Z" fill="#FFFFFF"/>
+      <!-- trunk -->
+      <g id="trunk" data-pivot="180,140">
+        <path d="M160 138 C158 176 160 210 176 228 C190 244 214 240 220 222 C224 210 214 202 206 208 C200 214 202 222 198 224 C188 226 186 196 200 138 Z" fill="#8EA2E8"/>
+        <path d="M186 140 L200 138 C186 196 188 226 198 224 C194 226 186 226 180 214 C176 192 178 164 186 140 Z" fill="#7486D6"/>
+        <path d="M164 176 C172 178 182 178 190 176" fill="none" stroke="#6A7BCF" stroke-width="3" stroke-linecap="round"/>
+        <path d="M166 192 C174 194 182 194 188 192" fill="none" stroke="#6A7BCF" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="212" cy="214" rx="6" ry="4" fill="#4E5BA8"/>
+      </g>
+      <!-- smile under the trunk sides -->
+      <g id="smile" data-pivot="180,160">
+        <path d="M142 150 C148 162 156 166 162 164" fill="none" stroke="#3B3F7A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M218 150 C212 162 204 166 198 164" fill="none" stroke="#3B3F7A" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <ellipse cx="128" cy="134" rx="12" ry="8" fill="#FF8FB1" fill-opacity="0.75"/>
+      <ellipse cx="232" cy="134" rx="12" ry="8" fill="#FF8FB1" fill-opacity="0.75"/>
+      <!-- eyes -->
+      <g id="eyes" data-pivot="180,104">
+        <ellipse cx="152" cy="106" rx="17" ry="20" fill="#FFFFFF"/>
+        <ellipse cx="208" cy="106" rx="17" ry="20" fill="#FFFFFF"/>
+        <circle cx="154" cy="110" r="11" fill="#2A1F5C"/>
+        <circle cx="210" cy="110" r="11" fill="#2A1F5C"/>
+        <circle cx="158" cy="105" r="4.5" fill="#FFFFFF"/>
+        <circle cx="214" cy="105" r="4.5" fill="#FFFFFF"/>
+        <circle cx="151" cy="115" r="2" fill="#FFFFFF"/>
+        <circle cx="207" cy="115" r="2" fill="#FFFFFF"/>
+      </g>
+      <path d="M138 78 C144 72 156 70 164 74" fill="none" stroke="#4E5BA8" stroke-width="5" stroke-linecap="round"/>
+      <path d="M196 74 C204 70 216 72 222 78" fill="none" stroke="#4E5BA8" stroke-width="5" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

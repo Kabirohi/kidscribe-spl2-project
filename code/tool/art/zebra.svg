@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400">
+  <ellipse cx="160" cy="384" rx="112" ry="13" fill="#000" fill-opacity="0.13"/>
+  <g id="body" data-pivot="160,382">
+    <!-- tail -->
+    <g id="tail" data-pivot="238,262">
+      <path d="M234 262 C262 268 274 288 274 312" fill="none" stroke="#E4E0F2" stroke-width="9" stroke-linecap="round"/>
+      <path d="M264 304 C266 292 284 292 286 304 C290 324 278 336 270 332 C260 328 260 314 264 304 Z" fill="#2E2A5A"/>
+    </g>
+    <!-- back legs -->
+    <rect x="92" y="282" width="34" height="88" rx="17" fill="#E4E0F2"/>
+    <rect x="194" y="282" width="34" height="88" rx="17" fill="#E4E0F2"/>
+    <rect x="92" y="306" width="34" height="8" fill="#2E2A5A"/>
+    <rect x="194" y="306" width="34" height="8" fill="#2E2A5A"/>
+    <rect x="92" y="326" width="34" height="8" fill="#2E2A5A"/>
+    <rect x="194" y="326" width="34" height="8" fill="#2E2A5A"/>
+    <rect x="92" y="352" width="34" height="22" rx="11" fill="#2E2A5A"/>
+    <rect x="194" y="352" width="34" height="22" rx="11" fill="#2E2A5A"/>
+    <!-- belly -->
+    <path d="M76 258 C76 218 116 200 160 200 C204 200 244 218 244 258 C244 298 206 318 160 318 C114 318 76 298 76 258 Z" fill="#FFFFFF"/>
+    <path d="M224 226 C240 238 246 256 242 276 C236 300 212 314 186 317 C216 302 234 270 224 226 Z" fill="#E4E0F2"/>
+    <!-- body stripes -->
+    <path d="M86 236 C100 240 112 250 116 262 C104 260 92 254 82 252 Z" fill="#2E2A5A"/>
+    <path d="M80 270 C96 270 110 278 116 290 C102 290 90 286 82 282 Z" fill="#2E2A5A"/>
+    <path d="M234 236 C220 240 208 250 204 262 C216 260 228 254 238 252 Z" fill="#2E2A5A"/>
+    <path d="M240 270 C224 270 210 278 204 290 C218 290 230 286 238 282 Z" fill="#2E2A5A"/>
+    <path d="M134 204 C138 216 140 226 136 236 C128 226 124 214 124 206 Z" fill="#2E2A5A"/>
+    <path d="M186 204 C182 216 180 226 184 236 C192 226 196 214 196 206 Z" fill="#2E2A5A"/>
+    <!-- front legs -->
+    <rect x="118" y="290" width="34" height="86" rx="17" fill="#FFFFFF"/>
+    <rect x="168" y="290" width="34" height="86" rx="17" fill="#FFFFFF"/>
+    <rect x="118" y="314" width="34" height="8" fill="#2E2A5A"/>
+    <rect x="168" y="314" width="34" height="8" fill="#2E2A5A"/>
+    <rect x="118" y="334" width="34" height="8" fill="#2E2A5A"/>
+    <rect x="168" y="334" width="34" height="8" fill="#2E2A5A"/>
+    <rect x="118" y="358" width="34" height="22" rx="11" fill="#3A3570"/>
+    <rect x="168" y="358" width="34" height="22" rx="11" fill="#3A3570"/>
+    <!-- head -->
+    <g id="head" data-pivot="160,200">
+      <g id="earL" data-pivot="110,70">
+        <path d="M112 74 C96 56 84 30 92 16 C108 22 124 46 128 66 Z" fill="#FFFFFF"/>
+        <path d="M112 66 C102 54 96 38 100 30 C108 36 116 50 120 62 Z" fill="#FF9EB8"/>
+      </g>
+      <g id="earR" data-pivot="210,70">
+        <path d="M208 74 C224 56 236 30 228 16 C212 22 196 46 192 66 Z" fill="#FFFFFF"/>
+        <path d="M208 66 C218 54 224 38 220 30 C212 36 204 50 200 62 Z" fill="#FF9EB8"/>
+      </g>
+      <!-- mane (mohawk) -->
+      <g id="mane" data-pivot="160,60">
+        <path d="M132 58 C130 40 140 24 152 20 C150 32 152 40 158 46 C160 30 170 18 184 16 C180 30 182 42 188 50 C190 58 186 62 180 64 L136 64 Z" fill="#2E2A5A"/>
+        <path d="M146 40 C150 34 156 32 160 34 C156 40 154 46 156 52 Z" fill="#FFFFFF"/>
+      </g>
+      <!-- head shape -->
+      <path d="M100 104 C100 70 126 52 160 52 C194 52 220 70 220 104 C220 132 206 148 196 160 C186 186 176 196 160 196 C144 196 134 186 124 160 C114 148 100 132 100 104 Z" fill="#FFFFFF"/>
+      <path d="M200 66 C216 80 222 100 218 120 C214 138 202 150 196 160 C186 186 178 194 168 196 C190 170 210 120 200 66 Z" fill="#E4E0F2"/>
+      <!-- face stripes -->
+      <path d="M104 92 C114 92 124 96 128 104 C118 106 108 104 102 102 Z" fill="#2E2A5A"/>
+      <path d="M216 92 C206 92 196 96 192 104 C202 106 212 104 218 102 Z" fill="#2E2A5A"/>
+      <path d="M140 60 C146 66 150 74 150 82 C142 78 136 70 134 62 Z" fill="#2E2A5A"/>
+      <path d="M180 60 C174 66 170 74 170 82 C178 78 184 70 186 62 Z" fill="#2E2A5A"/>
+      <path d="M156 56 C160 62 164 62 168 56 C166 66 154 66 156 56 Z" fill="#2E2A5A"/>
+      <!-- muzzle -->
+      <path d="M118 158 C118 136 138 126 160 126 C182 126 202 136 202 158 C202 182 184 198 160 198 C136 198 118 182 118 158 Z" fill="#FFB3C7"/>
+      <path d="M190 138 C200 146 204 158 200 172 C196 186 182 196 166 198 C186 186 196 160 190 138 Z" fill="#F494B0"/>
+      <ellipse cx="144" cy="152" rx="7" ry="5" fill="#7A2E5B"/>
+      <ellipse cx="176" cy="152" rx="7" ry="5" fill="#7A2E5B"/>
+      <g id="smile" data-pivot="160,172">
+        <path d="M142 170 C150 182 170 182 178 170 C174 188 146 188 142 170 Z" fill="#7A2E3B"/>
+      </g>
+      <ellipse cx="112" cy="130" rx="11" ry="7" fill="#FF8FB1" fill-opacity="0.7"/>
+      <ellipse cx="208" cy="130" rx="11" ry="7" fill="#FF8FB1" fill-opacity="0.7"/>
+      <!-- eyes -->
+      <g id="eyes" data-pivot="160,104">
+        <ellipse cx="136" cy="106" rx="16" ry="19" fill="#FFFFFF"/>
+        <ellipse cx="184" cy="106" rx="16" ry="19" fill="#FFFFFF"/>
+        <circle cx="137" cy="110" r="11" fill="#2A1F5C"/>
+        <circle cx="185" cy="110" r="11" fill="#2A1F5C"/>
+        <circle cx="141" cy="105" r="4.5" fill="#FFFFFF"/>
+        <circle cx="189" cy="105" r="4.5" fill="#FFFFFF"/>
+        <circle cx="134" cy="115" r="2" fill="#FFFFFF"/>
+        <circle cx="182" cy="115" r="2" fill="#FFFFFF"/>
+      </g>
+      <!-- eye outline rings so white eyes read on white face -->
+      <ellipse cx="136" cy="106" rx="17.5" ry="20.5" fill="none" stroke="#2E2A5A" stroke-width="2.5"/>
+      <ellipse cx="184" cy="106" rx="17.5" ry="20.5" fill="none" stroke="#2E2A5A" stroke-width="2.5"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 140">
+  <g id="leaves" data-pivot="120,136">
+    <path d="M18 132 C2 132 0 108 16 100 C10 74 38 58 60 70 C70 40 110 34 128 56 C148 36 186 44 190 72 C214 68 236 90 226 112 C236 124 226 136 212 134 Z" fill="#4FB548"/>
+    <path d="M18 132 L212 134 C226 136 236 124 226 112 C214 122 190 120 170 118 C130 122 90 116 50 120 C30 120 16 118 10 116 C8 126 12 132 18 132 Z" fill="#3E9A3A"/>
+    <circle cx="58" cy="88" r="9" fill="#FF6FA8"/><circle cx="58" cy="88" r="3.5" fill="#FFE066"/>
+    <circle cx="112" cy="66" r="9" fill="#FFFFFF"/><circle cx="112" cy="66" r="3.5" fill="#FFB020"/>
+    <circle cx="168" cy="84" r="9" fill="#FF6FA8"/><circle cx="168" cy="84" r="3.5" fill="#FFE066"/>
+    <circle cx="140" cy="104" r="8" fill="#FFE066"/><circle cx="140" cy="104" r="3" fill="#FF8A3D"/>
+    <circle cx="86" cy="108" r="8" fill="#FFFFFF"/><circle cx="86" cy="108" r="3" fill="#FFB020"/>
+    <circle cx="200" cy="106" r="8" fill="#FFFFFF"/><circle cx="200" cy="106" r="3" fill="#FFB020"/>
+  </g>
+</svg>

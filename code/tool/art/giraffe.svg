@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480">
+  <!-- ground shadow -->
+  <ellipse cx="160" cy="462" rx="110" ry="14" fill="#000" fill-opacity="0.13"/>
+  <g id="body" data-pivot="160,460">
+    <!-- tail (behind) -->
+    <g id="tail" data-pivot="236,330">
+      <path d="M232 328 C258 336 270 352 272 378" fill="none" stroke="#E89A1A" stroke-width="9" stroke-linecap="round"/>
+      <path d="M262 372 C266 360 282 362 284 374 C288 392 276 404 268 400 C258 396 258 382 262 372 Z" fill="#8A4B2A"/>
+    </g>
+    <!-- back legs -->
+    <rect x="94" y="352" width="34" height="96" rx="17" fill="#E89A1A"/>
+    <rect x="192" y="352" width="34" height="96" rx="17" fill="#E89A1A"/>
+    <rect x="94" y="430" width="34" height="22" rx="11" fill="#6B3E26"/>
+    <rect x="192" y="430" width="34" height="22" rx="11" fill="#6B3E26"/>
+    <!-- belly -->
+    <path d="M78 332 C78 290 118 270 160 270 C202 270 242 290 242 332 C242 372 206 392 160 392 C114 392 78 372 78 332 Z" fill="#FFC93C"/>
+    <path d="M222 300 C238 312 244 330 240 350 C234 374 210 388 184 391 C214 376 232 344 222 300 Z" fill="#F4A51C"/>
+    <path d="M118 340 C134 352 186 352 202 340 C200 364 182 378 160 378 C138 378 120 364 118 340 Z" fill="#FFE3A3"/>
+    <!-- body spots -->
+    <path d="M96 318 C94 304 108 296 118 302 C128 308 126 324 114 328 C104 331 97 327 96 318 Z" fill="#C8702C"/>
+    <path d="M196 296 C200 286 216 286 220 296 C224 306 214 316 204 314 C196 312 193 304 196 296 Z" fill="#C8702C"/>
+    <path d="M214 336 C218 330 228 332 228 340 C228 348 220 352 214 348 C210 345 211 340 214 336 Z" fill="#B85F24"/>
+    <!-- front legs -->
+    <rect x="118" y="362" width="34" height="92" rx="17" fill="#FFC93C"/>
+    <rect x="168" y="362" width="34" height="92" rx="17" fill="#FFC93C"/>
+    <rect x="186" y="362" width="16" height="80" rx="8" fill="#F4A51C"/>
+    <rect x="118" y="436" width="34" height="22" rx="11" fill="#7A472C"/>
+    <rect x="168" y="436" width="34" height="22" rx="11" fill="#7A472C"/>
+    <!-- neck -->
+    <g id="neck" data-pivot="160,300">
+      <path d="M128 304 C126 250 134 196 138 160 L182 160 C186 196 194 250 192 304 C180 312 140 312 128 304 Z" fill="#FFC93C"/>
+      <path d="M170 162 L182 160 C186 196 194 250 192 304 C186 308 180 309 174 310 C182 262 178 206 170 162 Z" fill="#F4A51C"/>
+      <path d="M140 196 C140 186 152 182 158 190 C164 198 158 210 148 210 C142 210 140 204 140 196 Z" fill="#C8702C"/>
+      <path d="M160 238 C162 228 176 228 178 238 C180 248 170 256 162 252 C158 249 158 243 160 238 Z" fill="#C8702C"/>
+      <path d="M136 268 C138 260 150 260 152 268 C154 278 144 284 138 280 C135 277 135 272 136 268 Z" fill="#B85F24"/>
+      <!-- head -->
+      <g id="head" data-pivot="160,165">
+        <!-- ears -->
+        <g id="earL" data-pivot="104,82">
+          <path d="M104 84 C88 66 62 62 52 72 C60 90 84 98 104 96 Z" fill="#F4A51C"/>
+          <path d="M98 86 C86 76 70 74 64 78 C70 88 86 92 98 92 Z" fill="#FF9EB8"/>
+        </g>
+        <g id="earR" data-pivot="216,82">
+          <path d="M216 84 C232 66 258 62 268 72 C260 90 236 98 216 96 Z" fill="#F4A51C"/>
+          <path d="M222 86 C234 76 250 74 256 78 C250 88 234 92 222 92 Z" fill="#FF9EB8"/>
+        </g>
+        <!-- horns -->
+        <rect x="124" y="26" width="16" height="44" rx="8" fill="#F4A51C"/>
+        <rect x="180" y="26" width="16" height="44" rx="8" fill="#F4A51C"/>
+        <circle cx="132" cy="26" r="13" fill="#8A4B2A"/>
+        <circle cx="188" cy="26" r="13" fill="#8A4B2A"/>
+        <circle cx="128" cy="22" r="4" fill="#B97A55"/>
+        <circle cx="184" cy="22" r="4" fill="#B97A55"/>
+        <!-- head shape -->
+        <path d="M94 104 C94 64 124 46 160 46 C196 46 226 64 226 104 C226 140 200 166 160 166 C120 166 94 140 94 104 Z" fill="#FFC93C"/>
+        <path d="M206 64 C222 78 228 98 224 118 C218 146 196 162 172 166 C200 150 214 116 206 64 Z" fill="#F4A51C"/>
+        <path d="M118 62 C118 54 128 50 134 56 C140 62 136 72 128 72 C122 72 118 68 118 62 Z" fill="#C8702C"/>
+        <path d="M194 58 C196 52 204 52 206 58 C208 64 202 68 198 66 C195 64 193 61 194 58 Z" fill="#C8702C"/>
+        <!-- snout -->
+        <path d="M110 136 C110 116 134 108 160 108 C186 108 210 116 210 136 C210 158 188 170 160 170 C132 170 110 158 110 136 Z" fill="#FFE3A3"/>
+        <ellipse cx="142" cy="128" rx="6" ry="4.5" fill="#8A4B2A"/>
+        <ellipse cx="178" cy="128" rx="6" ry="4.5" fill="#8A4B2A"/>
+        <!-- mouth -->
+        <g id="smile" data-pivot="160,148">
+          <path d="M142 146 C150 158 170 158 178 146 C174 162 146 162 142 146 Z" fill="#7A2E3B"/>
+        </g>
+        <!-- cheeks -->
+        <ellipse cx="108" cy="122" rx="12" ry="8" fill="#FF8FB1" fill-opacity="0.75"/>
+        <ellipse cx="212" cy="122" rx="12" ry="8" fill="#FF8FB1" fill-opacity="0.75"/>
+        <!-- eyes -->
+        <g id="eyes" data-pivot="160,92">
+          <ellipse cx="134" cy="92" rx="17" ry="20" fill="#FFFFFF"/>
+          <ellipse cx="186" cy="92" rx="17" ry="20" fill="#FFFFFF"/>
+          <circle cx="136" cy="96" r="11" fill="#2A1F5C"/>
+          <circle cx="188" cy="96" r="11" fill="#2A1F5C"/>
+          <circle cx="140" cy="91" r="4.5" fill="#FFFFFF"/>
+          <circle cx="192" cy="91" r="4.5" fill="#FFFFFF"/>
+          <circle cx="133" cy="101" r="2" fill="#FFFFFF"/>
+          <circle cx="185" cy="101" r="2" fill="#FFFFFF"/>
+        </g>
+        <!-- eyelashes / brows -->
+        <path d="M120 64 C126 56 140 54 148 60" fill="none" stroke="#8A4B2A" stroke-width="5" stroke-linecap="round"/>
+        <path d="M172 60 C180 54 194 56 200 64" fill="none" stroke="#8A4B2A" stroke-width="5" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+</svg>

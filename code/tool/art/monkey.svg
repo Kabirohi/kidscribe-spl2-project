@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+  <!-- The monkey hangs by one hand from a branch; the whole rig swings around the hand (150,18). -->
+  <g id="body" data-pivot="236,18">
+    <!-- tail curling behind -->
+    <g id="tail" data-pivot="176,282">
+      <path d="M172 282 C214 300 236 270 226 246 C218 228 196 236 202 252" fill="none" stroke="#9C5B34" stroke-width="12" stroke-linecap="round"/>
+    </g>
+    <!-- hanging arm -->
+    <path d="M172 216 C198 172 224 112 228 24 L246 24 C246 114 222 182 194 228 Z" fill="#9C5B34"/>
+    <circle cx="237" cy="20" r="15" fill="#F4CFA0"/>
+    <!-- free arm waving -->
+    <g id="arm" data-pivot="104,226">
+      <path d="M108 222 C88 220 70 236 64 258 L80 264 C86 248 98 240 110 240 Z" fill="#9C5B34"/>
+      <circle cx="70" cy="264" r="14" fill="#F4CFA0"/>
+    </g>
+    <!-- legs -->
+    <path d="M120 290 C110 316 104 336 112 352 L130 350 C128 334 134 316 142 300 Z" fill="#8A4E2B"/>
+    <path d="M180 290 C190 316 196 336 188 352 L170 350 C172 334 166 316 158 300 Z" fill="#8A4E2B"/>
+    <ellipse cx="118" cy="356" rx="17" ry="11" fill="#F4CFA0"/>
+    <ellipse cx="182" cy="356" rx="17" ry="11" fill="#F4CFA0"/>
+    <!-- torso -->
+    <path d="M104 250 C104 214 124 196 150 196 C176 196 196 214 196 250 C196 286 176 304 150 304 C124 304 104 286 104 250 Z" fill="#9C5B34"/>
+    <path d="M180 212 C194 226 198 248 194 266 C188 290 172 302 156 304 C178 288 190 250 180 212 Z" fill="#8A4E2B"/>
+    <path d="M124 254 C124 234 136 224 150 224 C164 224 176 234 176 254 C176 276 164 290 150 290 C136 290 124 276 124 254 Z" fill="#F4CFA0"/>
+    <!-- head -->
+    <g id="head" data-pivot="150,196">
+      <circle cx="82" cy="134" r="28" fill="#9C5B34"/>
+      <circle cx="82" cy="134" r="17" fill="#F4CFA0"/>
+      <circle cx="218" cy="134" r="28" fill="#8A4E2B"/>
+      <circle cx="218" cy="134" r="17" fill="#F4CFA0"/>
+      <path d="M86 130 C86 88 114 66 150 66 C186 66 214 88 214 130 C214 172 186 200 150 200 C114 200 86 172 86 130 Z" fill="#9C5B34"/>
+      <path d="M196 88 C212 104 218 126 212 148 C204 178 182 196 158 200 C188 182 206 140 196 88 Z" fill="#8A4E2B"/>
+      <!-- hair tuft -->
+      <path d="M140 70 C136 54 146 46 152 54 C156 44 168 46 164 62 Z" fill="#8A4E2B"/>
+      <!-- face mask: heart shape -->
+      <path d="M150 104 C138 86 106 90 106 118 C106 132 112 142 118 150 C110 162 114 192 150 192 C186 192 190 162 182 150 C188 142 194 132 194 118 C194 90 162 86 150 104 Z" fill="#F4CFA0"/>
+      <ellipse cx="142" cy="156" rx="4" ry="3" fill="#6B3A1F"/>
+      <ellipse cx="158" cy="156" rx="4" ry="3" fill="#6B3A1F"/>
+      <g id="smile" data-pivot="150,170">
+        <path d="M130 166 C138 182 162 182 170 166 C166 188 134 188 130 166 Z" fill="#7A2E3B"/>
+        <path d="M142 178 C146 184 154 184 158 178 C154 182 146 182 142 178 Z" fill="#FF7A9C"/>
+      </g>
+      <ellipse cx="114" cy="150" rx="10" ry="7" fill="#FF8FB1" fill-opacity="0.7"/>
+      <ellipse cx="186" cy="150" rx="10" ry="7" fill="#FF8FB1" fill-opacity="0.7"/>
+      <g id="eyes" data-pivot="150,122">
+        <ellipse cx="132" cy="124" rx="15" ry="18" fill="#FFFFFF"/>
+        <ellipse cx="168" cy="124" rx="15" ry="18" fill="#FFFFFF"/>
+        <circle cx="134" cy="128" r="10" fill="#2A1F5C"/>
+        <circle cx="170" cy="128" r="10" fill="#2A1F5C"/>
+        <circle cx="137" cy="123" r="4" fill="#FFFFFF"/>
+        <circle cx="173" cy="123" r="4" fill="#FFFFFF"/>
+        <circle cx="131" cy="132" r="1.8" fill="#FFFFFF"/>
+        <circle cx="167" cy="132" r="1.8" fill="#FFFFFF"/>
+      </g>
+    </g>
+  </g>
+</svg>
